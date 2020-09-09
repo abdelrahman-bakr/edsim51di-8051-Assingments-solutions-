@@ -1,0 +1,7 @@
+".\Objects\STARTUP.obj",
+".\Objects\main.obj",
+".\Objects\ADC.obj",
+".\Objects\UART.obj",
+".\Objects\Timer.obj" 
+TO ".\Objects\lab2" 
+PRINT(".\Listings\lab2.m51") CODE( 0X0000-0X0FFF )

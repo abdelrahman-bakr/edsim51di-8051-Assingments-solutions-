@@ -1,0 +1,72 @@
+C51 COMPILER V9.60.0.0   UART                                                              09/08/2020 01:23:31 PAGE 1   
+
+
+C51 COMPILER V9.60.0.0, COMPILATION OF MODULE UART
+OBJECT MODULE PLACED IN .\Objects\UART.obj
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE UART.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listings\UART
+                    -.lst) TABS(2) OBJECT(.\Objects\UART.obj)
+
+line level    source
+
+   1          #include "UART.h"
+   2          
+   3          void UART_Init(){
+   4   1              SCON=0x50;              // Configure serial control register
+   5   1              PCON=0x80;              // SMOD bit set
+   6   1              TMOD=0x20;              // Using timer1,8-bit reload mode for baudrate generation
+   7   1              TH1=0xFD;               // 9600 baudrate(16 mhz clock)
+   8   1              TR1=1;                  // Start timer
+   9   1      }
+  10          
+  11          unsigned char read_char(){
+  12   1        
+  13   1              unsigned char character;
+  14   1              while(!RI);                           // Wait until character received completely
+  15   1              character=SBUF;                       // Read the character from buffer reg
+  16   1              RI=0;                                 // Clear the flag
+  17   1              return character;                     // Return the received character
+  18   1        
+  19   1      }
+  20          void Write_char(unsigned char character){
+  21   1        
+  22   1              SBUF=character;      // Load the character to be transmitted in to the buffer reg
+  23   1              while(!TI);          // Wait until transmission complete
+  24   1              TI=0;                // Clear flag
+  25   1      }
+  26          
+  27          void Write_String(char *str)
+  28          {
+  29   1        
+  30   1              int i;
+  31   1              for(i=0;str[i]!=0;i++)  /* Send each char of string till the NULL */
+  32   1              {
+  33   2                Write_char(str[i]); /* Call transmit data function */
+  34   2              }
+  35   1      } 
+  36          
+  37          void Read_String(char * rxBuffer){
+  38   1        
+  39   1        int index =0 ; 
+  40   1        
+  41   1            
+  42   1              
+  43   1              
+  44   1      
+  45   1      }
+*** WARNING C280 IN LINE 37 OF UART.c: 'rxBuffer': unreferenced local variable
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     84    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----       8
+C51 COMPILER V9.60.0.0   UART                                                              09/08/2020 01:23:31 PAGE 2   
+
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  1 WARNING(S),  0 ERROR(S)
