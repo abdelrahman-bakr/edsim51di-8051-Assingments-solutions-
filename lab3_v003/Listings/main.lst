@@ -1,0 +1,135 @@
+C51 COMPILER V9.60.0.0   MAIN                                                              09/08/2020 05:25:46 PAGE 1   
+
+
+C51 COMPILER V9.60.0.0, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN .\Objects\main.obj
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE main.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listings\main
+                    -.lst) TABS(2) OBJECT(.\Objects\main.obj)
+
+line level    source
+
+   1          #include "UART.h"
+   2          #include "Timer.h"
+   3          #include "Morse.h"
+   4          #include <string.h> // memcpy
+   5          
+   6          
+   7          
+   8          // global variable 
+   9          volatile int state = 0 ; 
+  10          volatile int index_isr = 0 ; 
+  11          volatile unsigned char check_isr ; 
+  12          unsigned char buffer_isr[BUFFER_SIZE] ; 
+  13          
+  14          
+  15            void ser_intr(void)interrupt 4        //Subroutine for Interrupt
+  16           {
+  17   1        char c;
+  18   1        c=SBUF;  
+  19   1        IE=0x00;   //Turning off interrupt to prevent recursion
+  20   1         
+  21   1         buffer_isr[index_isr] = c; 
+  22   1         index_isr++ ; 
+  23   1         check_isr =  buffer_isr[index_isr]  ; 
+  24   1         if((check_isr != '\n')&&(check_isr != '\r')){
+  25   2           
+  26   2           buffer_isr[index_isr] = '\0'; 
+  27   2           state =1 ; 
+  28   2           index_isr = 0 ;
+  29   2        
+  30   2         }else{
+  31   2          state = 0 ; 
+  32   2         }
+  33   1         
+  34   1        IE=0x90;                            //Reactivating the interrupt
+  35   1       }
+  36          
+  37          int main(void){
+  38   1        unsigned char buffer[BUFFER_SIZE] ; 
+  39   1        unsigned char number , index = 0  ; 
+  40   1        MORSE_LED = LED_OFF ; 
+  41   1          
+  42   1        UART_init(); 
+*** WARNING C206 IN LINE 42 OF main.c: 'UART_init': missing function-prototype
+  43   1        
+  44   1        
+  45   1        while(1){
+  46   2          
+  47   2          Write_String("please enter a string \n");     // tell the user to enter a number 
+  48   2          gets_UART(buffer);      // read the string  
+  49   2            
+  50   2      
+  51   2          
+  52   2        while(buffer[index] != '\0'  ){     // loop on the read string elemnt by element 
+  53   3          
+C51 COMPILER V9.60.0.0   MAIN                                                              09/08/2020 05:25:46 PAGE 2   
+
+  54   3              state = 0 ;   // if an interrupt happen to set  it to 1 we will handle it right after finishing flashin
+             -g the current char 
+  55   3              number = buffer[index];  // read the number 
+  56   3            
+  57   3            if( (number < 48) || (number > 57)  ){   // check if it is numerical 
+  58   4        
+  59   4              Write_String("next char is  ");
+  60   4              Write_char(number); 
+  61   4              Write_String(" \nthis char is not numerical so ignored\n");
+  62   4              index ++ ; 
+  63   4            }
+  64   3            else{
+  65   4                  Write_String("next char is  ");       // start of sending a number    
+  66   4                  Write_char(number);   
+  67   4                  Write_String(" and will be sent now \n");     
+  68   4                
+  69   4                  Morse_Code(number - 48);                  // convert from ascii to decimal and initiate the sequence 
+  70   4                  Timer0_Delay_ms(MORSE_BETWEEN_TWO_LETTER_TIME); // wait for time between letters 
+  71   4                
+  72   4                  Write_String("done sending Number \t");       // verify that  the number is sent    
+  73   4                  Write_char(number);                                         // tell which number is sent 
+  74   4                  Write_char('\n');         // print new line  
+  75   4              
+  76   4                  index ++ ;  // increamnet index to go to next number 
+  77   4              
+  78   4              if(state == 1 ){
+  79   5                
+  80   5                index = 0  ;   // reset index to 0 so we begin at the new string  
+  81   5                Write_String("Sequence is cancelled \nNew sequence..\n");
+  82   5                memcpy(buffer,buffer_isr,BUFFER_SIZE);    // copy the string saved in interrupt subroutine to the buffe
+             -r we handle 
+  83   5                Timer0_Delay_ms(100);
+  84   5                state =0 ;    // reset the state to 0 
+  85   5              
+  86   5              }
+  87   4            
+  88   4            }
+  89   3          
+  90   3              
+  91   3          }
+  92   2                    Write_String("done sending numbers in the string \n");        // verify that  the number is sent    
+  93   2                    Timer0_Delay_ms(100);
+  94   2                    index = 0 ;   // reset index to 0 for a new string    
+  95   2              
+  96   2                                                
+  97   2          
+  98   2          
+  99   2          
+ 100   2        }
+ 101   1      
+ 102   1      }
+ 103          
+ 104          
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    331    ----
+   CONSTANT SIZE    =    202    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =     15      12
+   IDATA SIZE       =   ----    ----
+C51 COMPILER V9.60.0.0   MAIN                                                              09/08/2020 05:25:46 PAGE 3   
+
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  1 WARNING(S),  0 ERROR(S)

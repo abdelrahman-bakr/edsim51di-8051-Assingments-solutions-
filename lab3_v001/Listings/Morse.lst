@@ -1,0 +1,187 @@
+C51 COMPILER V9.60.0.0   MORSE                                                             09/08/2020 02:28:02 PAGE 1   
+
+
+C51 COMPILER V9.60.0.0, COMPILATION OF MODULE MORSE
+OBJECT MODULE PLACED IN .\Objects\Morse.obj
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE Morse.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listings\Mor
+                    -se.lst) TABS(2) OBJECT(.\Objects\Morse.obj)
+
+line level    source
+
+   1          
+   2          #include "Morse.h"
+   3          
+   4          
+   5          void Morse_Code(int number){
+   6   1        
+   7   1        switch (number){
+   8   2            
+   9   2          case 0:  // 0 is four dashes 
+  10   2            Blink_A_Dash();
+  11   2                    Timer0_Delay_ms(MORSE_BETWEEN_PART_OF_SAME_LETTER_TIME);
+  12   2            Blink_A_Dash();
+  13   2                    Timer0_Delay_ms(MORSE_BETWEEN_PART_OF_SAME_LETTER_TIME);
+  14   2            Blink_A_Dash();
+  15   2                    Timer0_Delay_ms(MORSE_BETWEEN_PART_OF_SAME_LETTER_TIME);
+  16   2            Blink_A_Dash();
+  17   2                    Timer0_Delay_ms(MORSE_BETWEEN_PART_OF_SAME_LETTER_TIME);
+  18   2            break ; 
+  19   2          
+  20   2          case 1 :  /// 1 is dot then four dashes 
+  21   2              Blink_A_Dot();
+  22   2                      Timer0_Delay_ms(MORSE_BETWEEN_PART_OF_SAME_LETTER_TIME);
+  23   2              Blink_A_Dash();
+  24   2                      Timer0_Delay_ms(MORSE_BETWEEN_PART_OF_SAME_LETTER_TIME);
+  25   2              Blink_A_Dash();
+  26   2                      Timer0_Delay_ms(MORSE_BETWEEN_PART_OF_SAME_LETTER_TIME);
+  27   2              Blink_A_Dash();
+  28   2                      Timer0_Delay_ms(MORSE_BETWEEN_PART_OF_SAME_LETTER_TIME);
+  29   2              Blink_A_Dash();
+  30   2                      Timer0_Delay_ms(MORSE_BETWEEN_PART_OF_SAME_LETTER_TIME);
+  31   2            break ; 
+  32   2          
+  33   2          case 2 :  // 2 is two dots then 3 dashes 
+  34   2              Blink_A_Dot();
+  35   2                      Timer0_Delay_ms(MORSE_BETWEEN_PART_OF_SAME_LETTER_TIME);
+  36   2              Blink_A_Dot();
+  37   2                      Timer0_Delay_ms(MORSE_BETWEEN_PART_OF_SAME_LETTER_TIME);
+  38   2              Blink_A_Dash();
+  39   2                      Timer0_Delay_ms(MORSE_BETWEEN_PART_OF_SAME_LETTER_TIME);
+  40   2              Blink_A_Dash();
+  41   2                      Timer0_Delay_ms(MORSE_BETWEEN_PART_OF_SAME_LETTER_TIME);
+  42   2              Blink_A_Dash();
+  43   2                      Timer0_Delay_ms(MORSE_BETWEEN_PART_OF_SAME_LETTER_TIME);
+  44   2          
+  45   2          
+  46   2            break ; 
+  47   2          
+  48   2          case 3: /// 3 is three dots then two dashes 
+  49   2              Blink_A_Dot();
+  50   2                      Timer0_Delay_ms(MORSE_BETWEEN_PART_OF_SAME_LETTER_TIME);
+  51   2              Blink_A_Dot();
+  52   2                      Timer0_Delay_ms(MORSE_BETWEEN_PART_OF_SAME_LETTER_TIME);
+  53   2              Blink_A_Dot();
+  54   2                      Timer0_Delay_ms(MORSE_BETWEEN_PART_OF_SAME_LETTER_TIME);
+C51 COMPILER V9.60.0.0   MORSE                                                             09/08/2020 02:28:02 PAGE 2   
+
+  55   2             Blink_A_Dash();
+  56   2                      Timer0_Delay_ms(MORSE_BETWEEN_PART_OF_SAME_LETTER_TIME);
+  57   2              Blink_A_Dash();
+  58   2                      Timer0_Delay_ms(MORSE_BETWEEN_PART_OF_SAME_LETTER_TIME);
+  59   2            
+  60   2            
+  61   2            break ; 
+  62   2          case 4:  /// 4 is four dots then 1 dash 
+  63   2          Blink_A_Dot();
+  64   2                      Timer0_Delay_ms(MORSE_BETWEEN_PART_OF_SAME_LETTER_TIME);
+  65   2          Blink_A_Dot();
+  66   2                      Timer0_Delay_ms(MORSE_BETWEEN_PART_OF_SAME_LETTER_TIME);
+  67   2          Blink_A_Dot();
+  68   2                      Timer0_Delay_ms(MORSE_BETWEEN_PART_OF_SAME_LETTER_TIME);
+  69   2          Blink_A_Dot();
+  70   2                      Timer0_Delay_ms(MORSE_BETWEEN_PART_OF_SAME_LETTER_TIME);
+  71   2          Blink_A_Dash();
+  72   2                      Timer0_Delay_ms(MORSE_BETWEEN_PART_OF_SAME_LETTER_TIME);
+  73   2            
+  74   2            
+  75   2            break ; 
+  76   2          case 5: /// 5 is five dots 
+  77   2          Blink_A_Dot();
+  78   2                      Timer0_Delay_ms(MORSE_BETWEEN_PART_OF_SAME_LETTER_TIME);
+  79   2          Blink_A_Dot();
+  80   2                      Timer0_Delay_ms(MORSE_BETWEEN_PART_OF_SAME_LETTER_TIME);
+  81   2          Blink_A_Dot();
+  82   2                      Timer0_Delay_ms(MORSE_BETWEEN_PART_OF_SAME_LETTER_TIME);
+  83   2          Blink_A_Dot();
+  84   2                      Timer0_Delay_ms(MORSE_BETWEEN_PART_OF_SAME_LETTER_TIME);
+  85   2          Blink_A_Dot();
+  86   2                      Timer0_Delay_ms(MORSE_BETWEEN_PART_OF_SAME_LETTER_TIME);
+  87   2            break ; 
+  88   2          case 6: /// 6 is one dash then four dots 
+  89   2            Blink_A_Dash();
+  90   2                      Timer0_Delay_ms(MORSE_BETWEEN_PART_OF_SAME_LETTER_TIME);
+  91   2            Blink_A_Dot();
+  92   2                      Timer0_Delay_ms(MORSE_BETWEEN_PART_OF_SAME_LETTER_TIME);
+  93   2          Blink_A_Dot();
+  94   2                      Timer0_Delay_ms(MORSE_BETWEEN_PART_OF_SAME_LETTER_TIME);
+  95   2          Blink_A_Dot();
+  96   2                      Timer0_Delay_ms(MORSE_BETWEEN_PART_OF_SAME_LETTER_TIME);
+  97   2          Blink_A_Dot();
+  98   2                      Timer0_Delay_ms(MORSE_BETWEEN_PART_OF_SAME_LETTER_TIME);
+  99   2            break ; 
+ 100   2          case 7:  /// 7 is two dashes then three dots 
+ 101   2            Blink_A_Dash();
+ 102   2                      Timer0_Delay_ms(MORSE_BETWEEN_PART_OF_SAME_LETTER_TIME);
+ 103   2          Blink_A_Dash();
+ 104   2                      Timer0_Delay_ms(MORSE_BETWEEN_PART_OF_SAME_LETTER_TIME);
+ 105   2            Blink_A_Dot();
+ 106   2                      Timer0_Delay_ms(MORSE_BETWEEN_PART_OF_SAME_LETTER_TIME);
+ 107   2          Blink_A_Dot();
+ 108   2                      Timer0_Delay_ms(MORSE_BETWEEN_PART_OF_SAME_LETTER_TIME);
+ 109   2          Blink_A_Dot();
+ 110   2                      Timer0_Delay_ms(MORSE_BETWEEN_PART_OF_SAME_LETTER_TIME);
+ 111   2          
+ 112   2            break ; 
+ 113   2          case 8 :  ///  8 is three dahses then two dots 
+ 114   2              Blink_A_Dash();
+ 115   2                      Timer0_Delay_ms(MORSE_BETWEEN_PART_OF_SAME_LETTER_TIME);
+ 116   2            Blink_A_Dash();
+C51 COMPILER V9.60.0.0   MORSE                                                             09/08/2020 02:28:02 PAGE 3   
+
+ 117   2                      Timer0_Delay_ms(MORSE_BETWEEN_PART_OF_SAME_LETTER_TIME);
+ 118   2            Blink_A_Dash();
+ 119   2                      Timer0_Delay_ms(MORSE_BETWEEN_PART_OF_SAME_LETTER_TIME);
+ 120   2            Blink_A_Dot();
+ 121   2                      Timer0_Delay_ms(MORSE_BETWEEN_PART_OF_SAME_LETTER_TIME);
+ 122   2          Blink_A_Dot();
+ 123   2                      Timer0_Delay_ms(MORSE_BETWEEN_PART_OF_SAME_LETTER_TIME);
+ 124   2          
+ 125   2            break ; 
+ 126   2          case 9 : /// 9 is four dashes then one dot 
+ 127   2              Blink_A_Dash();
+ 128   2                      Timer0_Delay_ms(MORSE_BETWEEN_PART_OF_SAME_LETTER_TIME);
+ 129   2            Blink_A_Dash();
+ 130   2                      Timer0_Delay_ms(MORSE_BETWEEN_PART_OF_SAME_LETTER_TIME);
+ 131   2            Blink_A_Dash();
+ 132   2                      Timer0_Delay_ms(MORSE_BETWEEN_PART_OF_SAME_LETTER_TIME);
+ 133   2            Blink_A_Dash();
+ 134   2                      Timer0_Delay_ms(MORSE_BETWEEN_PART_OF_SAME_LETTER_TIME);
+ 135   2          Blink_A_Dot();
+ 136   2                      Timer0_Delay_ms(MORSE_BETWEEN_PART_OF_SAME_LETTER_TIME);
+ 137   2          
+ 138   2            break ;
+ 139   2          
+ 140   2        }
+ 141   1      
+ 142   1      }
+ 143          
+ 144          void Blink_A_Dot(){
+ 145   1          
+ 146   1        MORSE_LED = LED_ON ; 
+ 147   1        Timer0_Delay_ms(MORSE_DOT_TIME);
+ 148   1        MORSE_LED = LED_OFF ; 
+ 149   1        Timer0_Delay_ms(MORSE_DOT_TIME);
+ 150   1      
+ 151   1      
+ 152   1      }
+ 153          void Blink_A_Dash(){
+ 154   1      
+ 155   1        MORSE_LED = LED_ON ; 
+ 156   1        Timer0_Delay_ms(MORSE_DASH_TIME);
+ 157   1        MORSE_LED = LED_OFF ; 
+ 158   1      Timer0_Delay_ms(MORSE_DASH_TIME);
+ 159   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    444    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)
